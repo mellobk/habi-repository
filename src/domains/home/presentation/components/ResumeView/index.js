@@ -14,7 +14,7 @@ const ResumeView = () => {
     <h1>Resume View</h1>
     <img  className="img" src={userInfo[stepsFields.PICTURE]}/>
     <div className="personal-data"><strong>Nombre:</strong> {`${userInfo[stepsFields.NAME]} ${userInfo[stepsFields.LASTNAME]}`}</div> 
-    <div className="email"><strong>Correo electronico:</strong> {`${userInfo[stepsFields.EMAIL]}`}</div> 
+    <div className="email"><strong>Correo electrónico:</strong> {`${userInfo[stepsFields.EMAIL]}`}</div> 
     <div className="address"><strong>Dirección:</strong> {`${userInfo[stepsFields.ADDRESS]}`}</div> 
     <div className="floor-number"><strong>Numero de piso del apartmento?:</strong> {`${userInfo[stepsFields.FLOOR_NUMBER]}`}</div>
     <div className="bbq-zone"><strong>Tiene zona BBQ?:</strong> {`${userInfo[stepsFields.BBQ_AREA]?'Si':'No'}`}</div>
