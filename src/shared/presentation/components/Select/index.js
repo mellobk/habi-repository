@@ -74,11 +74,11 @@ const Select = ({
 
 
 Select.propTypes = {
-    options: PropTypes.object,
+    options: PropTypes.array,
     disabled: PropTypes.bool,
     className: PropTypes.string,
     onSelectItem: PropTypes.func,
-    defaultOption: PropTypes.array,
+    defaultOption: PropTypes.object,
     defaultMessage: PropTypes.string,
     title: PropTypes.string,
     error: PropTypes.string,

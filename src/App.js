@@ -10,7 +10,7 @@ const App = () => {
   useEffect(()=>{
     dispatch(setTotalStep(stepRoutes)) 
   },[dispatch])
-
+ 
   return (
     <>
       <Router />
