@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import "./Modal.scss";
 import Modal from "react-modal";
 
-const ModalApp = ({
-  variant,
-  ClassName,
-  children,
-  modalIsOpen,
-  onCLose,
-  ...rest
-}) => {
-  Modal.setAppElement("#root");
+const modalRoot = document.createElement("div");
+modalRoot.setAttribute("id", "modal-root");
+document.body.appendChild(modalRoot);
+
+const ModalApp = ({ children, modalIsOpen, onCLose, ...rest }) => {
+  const el = document.createElement("div");
+  useEffect(() => {
+    modalRoot.appendChild(el);
+    Modal.setAppElement(el)
+    return () => modalRoot.removeChild(el);
+  });
 
   const customStyles = {
     overlay: {
@@ -23,8 +25,8 @@ const ModalApp = ({
       justifyContent: "center",
       alignItems: "center",
       flexDirection: "column",
-      inset: '15px',
-      padding: '10px'
+      inset: "15px",
+      padding: "10px",
     },
   };
 
@@ -41,17 +43,9 @@ const ModalApp = ({
 };
 
 ModalApp.propTypes = {
-  variant: PropTypes.string,
-  ClassName: PropTypes.string,
   children: PropTypes.node,
   onCLose: PropTypes.func,
   modalIsOpen: PropTypes.bool,
-};
-
-ModalApp.defaultProps = {
-  variant: "",
-  ClassName: "",
-  titleButton: "",
 };
 
 export default ModalApp;
