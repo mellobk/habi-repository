@@ -1,0 +1,8 @@
+@import "../../../../../shared/application/theme/colors.scss";
+
+
+.success-container{
+    >.success{
+        color: $success;
+    }
+}

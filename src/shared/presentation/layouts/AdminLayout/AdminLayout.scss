@@ -1,0 +1,39 @@
+@import "../../../../shared/application/theme/colors.scss";
+@import "../../../../shared/application/theme/mixins";
+@import "../../../../shared/application/theme/animations.scss";
+
+
+.admin-layout-container{
+  >.resume{
+    position: absolute;
+    height: inherit;
+    right: 0;
+    min-width: 25%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(51,0,51,.1);
+  }
+
+  >.resume-modal{
+    > .button-container .resumen-view-button{
+      display: none;
+     }
+  }
+
+}
+
+
+@include small-view {
+
+  .admin-layout-container{
+    >.resume{
+     display: none;
+    }
+
+    >.resume-modal{
+      >.button-container .resumen-view-button{
+        display: block;
+       }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import "../../../../../shared/application/theme/mixins";
+
+.resume-view-container{
+    padding: 20px;
+    font-size: 14px;
+
+    >h1{
+    margin: 10px 0;
+    }
+}
+
+@include small-view {
+
+    .resume-view-container{
+        padding: 0px;
+
+    }
+  }
