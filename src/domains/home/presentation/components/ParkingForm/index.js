@@ -43,6 +43,10 @@ const ParkingForm = () => {
         stepParkinVariable,
         findDefaultOption(userInfo[stepParkinVariable]).value
       );
+      setValue(
+        stepCoveredVariable,
+        findDefaultOption(userInfo[stepCoveredVariable]).value
+      );
   }, []);
 
   const dispatch = useDispatch();
@@ -74,7 +78,7 @@ const ParkingForm = () => {
             title="Es cubierto?"
             name={stepCoveredVariable}
             options={selectOptions}
-            defaultOption={findDefaultOption("No")}
+            defaultOption={findDefaultOption(userInfo[stepCoveredVariable])}
             defaultMessage="Seleccione una opcion"
             onSelectItem={(e) => handleOnchange(stepCoveredVariable, e.value)}
             error={errors[stepCoveredVariable]?.message}

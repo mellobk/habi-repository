@@ -8,11 +8,11 @@ modalRoot.setAttribute("id", "modal-root");
 document.body.appendChild(modalRoot);
 
 const ModalApp = ({ children, modalIsOpen, onCLose, ...rest }) => {
-  const el = document.createElement("div");
+  const modalElement = document.createElement("div");
   useEffect(() => {
-    modalRoot.appendChild(el);
-    Modal.setAppElement(el)
-    return () => modalRoot.removeChild(el);
+    modalRoot.appendChild(modalElement);
+    Modal.setAppElement(modalElement);
+    return () => modalRoot.removeChild(modalElement);
   });
 
   const customStyles = {

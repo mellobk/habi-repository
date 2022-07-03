@@ -24,7 +24,7 @@ export const userInfoInit = {
 	[stepsFields.COMMUNITY_ROOM]: "",
 	[stepsFields.PLAY_GROUND]: "",
 	[stepsFields.PARKING]: "",
-	[stepsFields.COVERED]: "",
+	[stepsFields.COVERED]: "No",
 	[stepsFields.PRICE]: "",
 	[stepsFields.PICTURE]: "",
 	[stepsFields.ELEVATOR]: "",
