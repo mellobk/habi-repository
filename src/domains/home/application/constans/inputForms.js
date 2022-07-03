@@ -21,9 +21,9 @@ export const personalArrayInput = [
   export   const emailArrayInput = [
     {
       name: stepsFields.EMAIL,
-      title: "Correo electronico",
+      title: "Correo electrónico",
       type: "email",
-      placeholder: "Ingresa tu correo electronico",
+      placeholder: "Ingresa tu correo electrónico",
       className: "input-email",
     },
 

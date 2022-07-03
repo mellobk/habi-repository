@@ -43,7 +43,7 @@ export const stepRoutes = [
     path: emailRoute,
     page: EmailData,
     step: 2,
-    description: "obtencion de correo electronico del cliente",
+    description: "obtencion de correo electrónico del cliente",
     name: "email",
   },
 
