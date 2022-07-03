@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,17 +6,27 @@ import PropTypes from "prop-types";
 import "./HomeForm.scss";
 import InputApp from "../../../../../shared/presentation/components/Input";
 import ButtonApp from "../../../../../shared/presentation/components/Button";
-import { setUserInfo } from "../../../application/slices/home";
+
 import { history } from "../../../../../shared/application/helpers/history";
-import { getActualRotue, getUserInfo } from "../../../application/selectors/home";
+import {
+  getActualRotue,
+  getUserInfo,
+} from "../../../application/selectors/home";
 import ButtonsForm from "../ButtonsForm";
+import useDebounce from "../../../../../shared/application/constants/customHooks";
+import { setUserInfo } from "../../../application/slices/home";
 
 const HomeForm = ({ schema, inputArray }) => {
+  const [linkPush, setLinkPush] = useState("");
+  const [debounceData, setDebounceData] = useState({});
+  const routesPath = useSelector(getActualRotue);
+  const userInfo = useSelector(getUserInfo);
+  const queryDebounce = useDebounce(debounceData.data, 250);
+  const dispatch = useDispatch();
 
-    const [linkPush, setLinkPush] =  useState('')
-    const routesPath = useSelector(getActualRotue); 
-    const userInfo = useSelector(getUserInfo); 
-    
+  useEffect(() => {
+    dispatch(setUserInfo({ [debounceData.name]: debounceData.data }));
+  }, [queryDebounce]);
   const {
     register,
     formState: { errors },
@@ -25,14 +35,12 @@ const HomeForm = ({ schema, inputArray }) => {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const dispatch = useDispatch();
-  
-  const handleOnchange = (name,data) => {
-    dispatch(setUserInfo({ [name]:data }))
-}
+
+  const handleOnchange = (name, data) => setDebounceData({ name, data });
 
   const onSubmit = () => {
-       history.push(linkPush)};
+    history.push(linkPush);
+  };
 
   return (
     <div className="form-container">
@@ -47,7 +55,7 @@ const HomeForm = ({ schema, inputArray }) => {
                 type={data.type}
                 name={data.name}
                 value={data.value}
-                onChange={(e)=>handleOnchange(data.name,e.target.value)}
+                onChange={(e) => handleOnchange(data.name, e.target.value)}
                 defaultValue={userInfo[data.name]}
                 placeholder={data.placeholder}
                 register={register(data.name)}
@@ -56,7 +64,7 @@ const HomeForm = ({ schema, inputArray }) => {
             );
           })}
 
-      <ButtonsForm setLinkPush={setLinkPush} routesPath={routesPath} />
+        <ButtonsForm setLinkPush={setLinkPush} routesPath={routesPath} />
       </form>
     </div>
   );
@@ -65,12 +73,12 @@ const HomeForm = ({ schema, inputArray }) => {
 HomeForm.propTypes = {
   schema: PropTypes.object,
   inputArray: PropTypes.array,
-  children: PropTypes.node||  PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.node || PropTypes.arrayOf(PropTypes.node),
 };
 
 ButtonApp.defaultProps = {
-    schema:{},
-    inputArray: []
-  };
+  schema: {},
+  inputArray: [],
+};
 
 export default HomeForm;

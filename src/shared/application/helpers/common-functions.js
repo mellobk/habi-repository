@@ -91,15 +91,16 @@ export const removeEmptyFields = (obj = {}) => {
 export const formatName = (name) => (name.length > 0 ? `${name},` : '');
 
 
-export const debounce = ( fn, timeoutTime = 50) => {
-	let timer;
-	return (...args) => {
-	  if (!timer) {
-		fn.apply(this, args);
-	  }
-	  clearTimeout(timer);
-	  timer = setTimeout(() => {
-		timer = undefined;
-	  }, timeoutTime);
+export const debounce = (func, wait) => {
+	let timeout;
+  
+	return function executedFunction(...args) {
+	  const later = () => {
+		clearTimeout(timeout);
+		func(...args);
+	  };
+  
+	  clearTimeout(timeout);
+	  timeout = setTimeout(later, wait);
 	};
-};
+  };

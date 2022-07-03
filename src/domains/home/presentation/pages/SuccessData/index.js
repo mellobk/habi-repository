@@ -14,7 +14,7 @@ const SuccessData = () => {
   return (
     <div className="success-container">
       <CheckCircle size={64} className="success" />
-      <h1> Informacion enviada correctamente</h1>
+      <h1> Información enviada correctamente</h1>
       <ButtonApp textButton="Volver" onClick={handleClick} />
     </div>
   );
